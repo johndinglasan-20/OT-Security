@@ -1,0 +1,43 @@
+services:
+  openplc:
+    image: tuttas/openplc_v3:latest
+    container_name: openplc
+    ports:
+      - "8081:8080"
+      - "502:502"
+    networks:
+      - ot_net
+
+  fuxa:
+    image: frangoteam/fuxa:latest
+    container_name: fuxa
+    ports:
+      - "1881:1881"
+    networks:
+      - ot_net
+
+  attacker:
+    image: kalilinux/kali-rolling:latest
+    container_name: attacker
+    tty: true
+    stdin_open: true
+    networks:
+      - ot_net
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+  ids:
+    image: jasonish/suricata:latest
+    container_name: ids
+    network_mode: "service:openplc"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./suricata-rules:/etc/suricata/rules
+    command: -i eth0 -k none -S /etc/suricata/rules/custom.rules
+
+networks:
+  ot_net:
+    driver: bridge

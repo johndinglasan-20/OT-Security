@@ -1,0 +1,1 @@
+alert tcp any any -> any 502 (msg:"OT ALERT - Unauthorized Modbus Write Single Coil (FC05)"; content:"|05|"; offset:7; depth:1; sid:1000001; rev:2;)

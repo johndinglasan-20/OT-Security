@@ -1,0 +1,45 @@
+# ===============================
+# Esclusioni specifiche del Lab
+# ===============================
+# Esclude la cartella labshock (ovunque si trovi nell'albero)
+labshock/
+**/labshock/
+
+# ===============================
+# Log e Dump di Rete (Pesanti / Dinamici)
+# ===============================
+*.log
+*.pcap
+*.pcapng
+eve.json
+fast.log
+
+# ===============================
+# Python (Exploit e script)
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# ===============================
+# Ambienti IDE e OS
+# ===============================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===============================
+# Docker & Credenziali
+# ===============================
+.env
+labshock/
+**/labshock/
+*.log
+eve.json
+__pycache__/
+.env
